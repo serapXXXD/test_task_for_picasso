@@ -1,6 +1,14 @@
-from rest_framework import viewsets
-from models import File
+from rest_framework.generics import ListAPIView, CreateAPIView
+from .models import File
+from .serializers import FileSerializer, UploadFileSerializer
 
 
-class FileViewSet(viewsets.ModelViewSet):
+class UploadViewSet(CreateAPIView):
     queryset = File.objects.all()
+    serializer_class = UploadFileSerializer
+
+
+class FileViewSet(ListAPIView):
+    queryset = File.objects.all()
+    serializer_class = FileSerializer
+
