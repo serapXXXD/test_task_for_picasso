@@ -1,4 +1,10 @@
-FROM ubuntu:latest
-LABEL authors="serap"
+FROM python:3.11-alpine
 
-ENTRYPOINT ["top", "-b"]
+RUN mkdir /code
+
+WORKDIR /code
+
+COPY . .
+
+RUN pip install -r ./requirements.txt
+

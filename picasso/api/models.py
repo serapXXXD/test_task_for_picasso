@@ -8,3 +8,7 @@ class File(models.Model):
 
     def __str__(self):
         return f'{self.file.name}, {self.uploaded_at}, {self.processed}'
+
+    class Meta:
+        verbose_name = 'Файл'
+        verbose_name_plural = 'Файлы'

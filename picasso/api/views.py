@@ -1,16 +1,18 @@
 from rest_framework.generics import ListAPIView, CreateAPIView
 from .models import File
-from .serializers import FileSerializer, UploadFileSerializer
+from .serializers import FileSerializer
+from .tasks import celery_file_worker
 
 
-class UploadViewSet(CreateAPIView):
+class UploadCreateView(CreateAPIView):
     queryset = File.objects.all()
-    serializer_class = UploadFileSerializer
+    serializer_class = FileSerializer
 
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
+    def perform_create(self, serializer):
+        new_file = serializer.save()
+        celery_file_worker.delay(new_file.id)
 
 
-class FileViewSet(ListAPIView):
+class FileListView(ListAPIView):
     queryset = File.objects.all()
     serializer_class = FileSerializer
