@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'picasso.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if DEBUG:
+if not int(os.environ.get('PRODUCTION')):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',

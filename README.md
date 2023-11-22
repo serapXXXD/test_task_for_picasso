@@ -36,6 +36,7 @@ python manage.py createsecretkey название_проекта
 
 SECRET_KEY="Ваш новый джанго ключ"
 DEBUG=1 дебаг включен | 0 дебаг выключен
+PRODUCTION=1 использует базу данных Postgres | 0 Sqlite
 
 POSTGRES_ENGINE='django.db.backends.postgresql_psycopg2'
 POSTGRES_NAME=picasso
