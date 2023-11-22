@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -76,16 +78,24 @@ WSGI_APPLICATION = 'picasso.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': os.environ.get('POSTGRES_ENGINE', default='django.db.backends.postgresql'),
-        'NAME': os.environ.get('POSTGRES_NAME', default='postgres'),
-        'USER': os.environ.get('POSTGRES_USER', default='postgres'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', default='postgres'),
-        'HOST': os.environ.get('POSTGRES_HOST', default='localhost'),
-        'PORT': os.environ.get('POSTGRES_PORT', default='5432'),
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': os.environ.get('POSTGRES_ENGINE', default='django.db.backends.postgresql'),
+            'NAME': os.environ.get('POSTGRES_NAME', default='postgres'),
+            'USER': os.environ.get('POSTGRES_USER', default='postgres'),
+            'PASSWORD': os.environ.get('POSTGRES_PASSWORD', default='postgres'),
+            'HOST': os.environ.get('POSTGRES_HOST', default='localhost'),
+            'PORT': os.environ.get('POSTGRES_PORT', default='5432'),
+        }
+    }
 
 
 # Password validation
@@ -140,6 +150,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REDIS_HOST = os.environ.get('REDIS_HOST')
 REDIS_PORT = os.environ.get('REDIS_PORT')
+
 CELERY_BROKER_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}/0"
 CELERY_RESULT_BACKEND = f"redis://{REDIS_HOST}:{REDIS_PORT}/0"
 broker_transport_options = {'visibility_timeout': 3600, 'max_retries': 10}

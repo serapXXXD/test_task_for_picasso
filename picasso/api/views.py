@@ -2,6 +2,9 @@ from rest_framework.generics import ListAPIView, CreateAPIView
 from .models import File
 from .serializers import FileSerializer
 from .tasks import celery_file_worker
+import magic
+
+mime = magic.Magic(mime=True)
 
 
 class UploadCreateView(CreateAPIView):
