@@ -5,7 +5,6 @@
 ### У вас должен быть установлен и запущен Docker
 
 
-
 Скопируйте проект командой 
  ```bash
 git clone git@github.com:serapXXXD/test_task_for_picasso.git
@@ -32,27 +31,35 @@ https://djecrety.ir/
 Формат ключа:
 django-insecure-```jvlf+slausy7o2#ak^%yji@p*g7lx(rxy4m23v1%+kwic_6ign```
 
-Вам нужно заполнить .env по примеру
- ```bash
-После занка "=" пробелов быть не должно!
 
-SECRET_KEY="Ваш новый джанго ключ"
-DEBUG=1 дебаг включен | 0 дебаг выключен
-PRODUCTION=1 использует базу данных Postgres | 0 Sqlite
+Вам нужно заполнить .env по примеру
+
+ ```bash
+SECRET_KEY=django-insecure-jvlf+slausy7o2#ak^%yji@p*g7lx(rxy4m23v1%+kwic_6ign
+DEBUG=1 
+PRODUCTION=1 
 
 POSTGRES_ENGINE='django.db.backends.postgresql_psycopg2'
 POSTGRES_NAME=picasso
 POSTGRES_USER=picasso
-POSTGRES_PASSWORD=укажите (придумайте) ваш паоль от базы данных
+POSTGRES_PASSWORD=posgres
 POSTGRES_HOST=data_base
 POSTGRES_PORT=5432
-
-В параметре "ALLOWED_HOSTS" укажите список хостов слитно через запятую
 
 ALLOWED_HOSTS=127.0.0.1,localhost
 
 REDIS_HOST=redis
 REDIS_PORT=6379
+ ```
+Пояснения:
+ ```bash
+После занка "=" пробелов быть не должно!
+
+DEBUG=1 дебаг включен | 0 дебаг выключен
+
+PRODUCTION=1 использует базу данных Postgres | 0 Sqlite
+
+В параметре "ALLOWED_HOSTS" укажите список хостов слитно через запятую
  ```
 
 Запускаем docker-compose
