@@ -21,16 +21,18 @@ git clone https://github.com/serapXXXD/test_task_for_picasso.git
 cd picasso_infra
  ```
 
-сздайте .env файл
+Создайте .env файл
  ```bash
 touch .env
  ```
 
 Получите новый ключ джанго 
- ```bash
-python manage.py createsecretkey название_проекта
- ```
-Вам нужно его заполнить по примеру
+https://djecrety.ir/
+
+Формат ключа:
+django-insecure-```jvlf+slausy7o2#ak^%yji@p*g7lx(rxy4m23v1%+kwic_6ign```
+
+Вам нужно заполнить .env по примеру
  ```bash
 После занка "=" пробелов быть не должно!
 
